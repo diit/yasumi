@@ -99,5 +99,51 @@ class France extends AbstractProvider
             'en_US' => 'Victoria Day',
             'fr_CA' => 'Fête de la Reine ou Journée nationale des Patriotes',
         ], new DateTime("monday on or before may 24 $this->year", new DateTimeZone($this->timezone)), $this->locale));
+
+        /*
+         * Thanksgiving
+         *
+         * Thanksgiving (French: Action de grâce), or Thanksgiving Day (Jour de l'action de grâce) 
+         * is an annual Canadian holiday, occurring on the second Monday in October, which 
+         * celebrates the harvest and other blessings of the past year.
+         *
+         * @link http://en.wikipedia.org/wiki/Thanksgiving_(Canada)
+         */
+        $this->addHoliday(new Holiday('thanksgiving', [
+            'en_US' => 'Thanksgiving',
+            'fr_CA' => 'Action de grâce',
+        ], new DateTime("second monday of ocotober $this->year", new DateTimeZone($this->timezone)), $this->locale));
+
+        /*
+         * Rememberance Day
+         *
+         * Remembrance Day (sometimes known informally as Poppy Day) is a memorial day observed
+         * in Commonwealth of Nations member states since the end of the First World War to 
+         * remember the members of their armed forces who have died in the line of duty. Following 
+         * a tradition inaugurated by King George V in 1919, the day is also marked by war 
+         * remembrances in many non-Commonwealth countries. Remembrance Day is observed on 11 
+         * November in most countries to recall the end of hostilities of World War I on that 
+         * date in 1918. Hostilities formally ended "at the 11th hour of the 11th day of the 
+         * 11th month", in accordance with the armistice signed by representatives of Germany 
+         * and the Entente between 5:12 and 5:20 that morning. ("At the 11th hour" refers to 
+         * the passing of the 11th hour, or 11:00 am.) The First World War officially ended 
+         * with the signing of the Treaty of Versailles on 28 June 1919.
+         *
+         * @link http://en.wikipedia.org/wiki/Remembrance_Day
+         */
+        if ($this->year >= 1919) {
+            $this->addHoliday(new Holiday('rememberanceDay', [
+                'en_US' => 'Rememberance Day',
+                'fr_CA' => 'Jour du Souvenir'
+            ], new DateTime("november 11 $this->year", new DateTimeZone($this->timezone)), $this->locale));
+        }
+
+        /*
+         * Boxing Day
+         */
+        $this->addHoliday(new Holiday('boxingDay', [
+            'en_US' => 'Boxing Day',
+            'fr_CA' => 'Lendemain de Noël'
+        ], new DateTime("december 26 $this->year", new DateTimeZone($this->timezone)), $this->locale));
     }
 }
